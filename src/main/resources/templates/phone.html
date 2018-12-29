@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${phone.getNumber()}"></title>
+</head>
+<body>
+<p th:text="${phone.getNumber()}"></p>
+
+<form th:action="@{'/updatephone-'+${phone.getId()}}" method="post">
+    <input type="tel" name="number" th:value="${phone.getNumber()}">
+    <input type="submit" value="Змінити">
+</form>
+
+<form th:action="@{'/delphone-'+${phone.getId()}}" method="post">
+    <input type="submit" value="Видалити">
+</form>
+
+</body>
+</html>

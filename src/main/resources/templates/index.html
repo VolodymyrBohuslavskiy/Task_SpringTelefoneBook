@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Телефонна книга
+    </title>
+</head>
+<body>
+<div class=""><a style="text-decoration: none; margin: 10px" th:each="contact : ${contacts}"
+                 th:text="${contact.getName()+' '+contact.getSurname()}" th:href="'contact'+${contact.getId()}"></a>
+</div>
+<div>
+    <form th:action="@{/reg}" method="post" style="margin: 10px">
+        <input type="text" name="name" placeholder="І'мя">
+        <input type="text" name="surname" placeholder="Фамілія">
+        <input type="tel" name="phone" placeholder="Телефон">
+        <input type="submit">
+    </form>
+</div>
+</body>
+</html>

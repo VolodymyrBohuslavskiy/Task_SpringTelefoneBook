@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${contact.getName()+' '+contact.getSurname()}"></title>
+</head>
+<body>
+<div class="">
+    <p th:text="${contact.getId()+' '+contact.getName()+' '+contact.getSurname()}" style="margin: 10px"></p>
+
+    <form th:action="@{'/change'}" method="post" style="margin: 10px">
+        <input type="hidden" name="id" th:value="${contact.getId()}">
+        <input type="text" name="name" th:value="${contact.getName()}">
+        <input type="text" name="surname" th:value="${contact.getSurname()}">
+        <input type="submit" value="Змінити">
+    </form>
+
+
+    <form th:action="@{'/del'+${contact.getId()}}" method="POST">
+        <input type="submit" th:value="'Видалити '+${contact.getName()}" style="margin: 10px">
+    </form>
+
+
+    <a th:each="phone : ${contact.getPhones()}" th:text="${phone.getNumber()}" th:href="@{'phone-'+${phone.getId()}}"
+       style="text-decoration: none; margin: 10px"></a>
+
+
+    <form th:action="@{'/addphone-'+${contact.getId()}}" method="post" style="margin: 10px">
+        <input type="tel" name="number">
+        <input type="submit" value="Додати">
+    </form>
+
+</div>
+</body>
+</html>
